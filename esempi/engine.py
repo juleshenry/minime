@@ -1,4 +1,4 @@
-
+"for running these via key board one chars hortcuts write a while loop that prints the input"
 import sys
 
 def _read_char():
@@ -13,8 +13,7 @@ def _read_char():
         try:
             tty.setraw(fd)
             ch = sys.stdin.read(1)
-            # if an escape sequence (arrow keys) start with '\x1b', read a couple more bytes
-            if ch == "C": # SATANICALLY, '\x1b':
+            if ch == '\x1b': # arrow keys
                 ch += sys.stdin.read(2)
             return ch
         finally:
