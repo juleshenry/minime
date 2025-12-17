@@ -303,6 +303,9 @@ Respond ONLY with valid JSON."""
         # Parse response
         try:
             data = json.loads(response)
+            # Ensure data is a dictionary
+            if not isinstance(data, dict):
+                raise ValueError("Expected dictionary response")
             return ProjectStrategy(
                 vision=data.get("vision", ""),
                 key_objectives=data.get("key_objectives", []),
@@ -310,8 +313,8 @@ Respond ONLY with valid JSON."""
                 technical_debt_areas=data.get("technical_debt_areas", []),
                 future_directions=data.get("future_directions", [])
             )
-        except json.JSONDecodeError:
-            # Fallback if response is not JSON
+        except (json.JSONDecodeError, ValueError, TypeError, AttributeError):
+            # Fallback if response is not JSON or not in expected format
             return ProjectStrategy(
                 vision="Strategic analysis available",
                 key_objectives=["Improve code quality", "Add features", "Enhance documentation"],
