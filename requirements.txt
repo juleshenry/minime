@@ -1,0 +1,8 @@
+# AI Provider dependencies (optional - install based on your needs)
+# For Claude API support:
+# anthropic>=0.18.0
+
+# For OpenAI API support:
+# openai>=1.0.0
+
+# No required dependencies - script works without API keys in simulation mode
